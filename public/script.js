@@ -35,6 +35,18 @@ function removeDessert(j){
   showCart();
 }
 
+async function navigate(title, url){
+  document.title = title;
+  let content = document.querySelector('#Details');
+  if(url === null){
+    content.innerHTML = "";
+  }else{
+    let response = await fetch(url);//fetch another page eg battery.html
+    content.innerHTML = await response.text();
+    executeScripts();
+  }
+}
+
 //function to use with a button to show cart, use the Id cart where you want the Cart to display
 function showCart(){
   let result = document.querySelector('#Details');
@@ -46,7 +58,7 @@ function showCart(){
     html += `<tr>
     <td>${item.name}</td>
     <td>$${item.cost}</td>
-    <td><input type="number" id="quantity${i}" value="Cart[${i}].qty">
+    <td><input type="number" id="quantity${i}" value="Cart[${i}].qty" >
     <button onclick="countUp(${i})">+</button>
     <button onclick="countDown(${i})">-</button>
     <button onclick="removeDessert(${i})">x</button></td>
@@ -54,29 +66,86 @@ function showCart(){
     i++;
   }
   html += `<tr><td></td> <td></td> 
-  <td><button onclick="Order()"></button></td>
+  <td><button onclick="Order()">Order items</button></td>
   </tr></tbody></table>`;
   result.innerHTML = html;
 }
 
-function showHome(){
-  let result = document.querySelector('#Details');
-
-  let html = `<image id="Home-Img" src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2Rlc3NlcnRzLXVwZGF0ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==" alt='Desserts'> 
-  <p id="Home-p">WASD's Bakery has established itself as being the Caribbean's bakery of choice by passionately providing our customers daily 
-  with quality products, heartfelt service and an enjoyable experience at unbeatable value.</p>`;
-  result.innerHTML = html;
-}
-function showContact(){
-  let result = document.querySelector('#Details');
-
-  let html = " Test 1";
-  result.innerHTML = html;
-}
 function Order(){
-  
+  let result = document.querySelector('#Details');
+
+  let html = `<div class="row">
+  <form id="myForm" class="col s12" >
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="Username" type="text"  required>
+        <label for="Username">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="Address" type="text"  required>
+        <label for="Address">Address</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="Number" type="tel" required>
+        <label for="Number">Phone Number</label>
+      </div>
+    </div>
+              
+    <div class="row">
+      <div class="col">
+        <input type="submit" class="btn waves-effect waves-light blue" value="Order" required/>
+      </div>
+    </div>
+   
+  </form>
+</div>`;
+
+  result.innerHTML = html;
 }
 
+  /*function submit(event){
+  event.preventDefault();
+    
+  const myForm = event.target;
+  const formData = new FormData(form);//get form data
+  const data = Object.fromEntries(formData);//convert form data to object
+
+  postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
+  }
+
+  document.forms['myForm'].addEventListener('submit', submit);
+
+  async function postData(url, data){
+  let Products = '';
+  let Total = 0;
+  for(let item of Cart){
+    Products += `${item.qty} ${item.id}, `; 
+    Total += (item.qty * item.cost);
+  }
+  data.Products =Products;
+  data.Total = Total;
+  try{
+      let response = await fetch(
+        url, 
+        {
+            method: 'POST',
+            body: JSON.stringify(data),
+          headers: { 'Content-Type':'application/json', 'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY' }
+        },
+      );
+      
+      let result = await response.text();
+      console.log(result);
+    
+    }catch(error){
+      console.log(error);
+  }
+  }
+  */
 //Prints the data, use the id Details where you want the details
 // eg. <div id="Details"> </div>
 function PrintDetails(item){
