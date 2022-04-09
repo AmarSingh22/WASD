@@ -1,37 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template App</title>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>WASD Bakery</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
+    <link href="style.css" rel="stylesheet" type="text/css" />        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
-</head>
-<body>
-    <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li ><a href="page2.html">Page 2</a></li>
-          </ul>
-        </div>
-      </nav>
-        
-      <main class="container"c>
-        <h1>My App</h1>
-      </main>
+    <style>
+    body{
+      display: grid;
+      background-color: #FFFFFF;
+      grid-template-rows: 1fr 8fr;
+      grid-template-columns: 2fr 8fr;  
+      height: 550px;
+    }
+    nav{
+      grid-column: span 2;
+    }
+    #Dessert-tab{
+      display: none;
+    }
+    #List-section{
+      color: black;
+      overflow-y: scroll;
+      height: 500px;
+    }
+    #Details{
+      height: 550px;
+      position: relative;
+      text-align: center;
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+    .Listings{
+      background-color: gainsboro;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      color: black;
+    }
+    #Home-Img{
+      height: 300px;
+    }
+    #Home-p{
+      font-size: large;
+    }
 
-
-    <script>
-         M.AutoInit();
-    </script>
+    @media screen and (max-width: 500px) {
+      #Dessert-tab{
+        display: inline;
+      }
+      #List-section{
+        display: none;
+      }
+      #Details{
+        width: 300px;
+      }
+    }
+    </style>
+  </head>
+  <body>
     
-</body>
+    <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">WASD Bakery</a>     
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a class="active" href="#Details" onclick="showHome()">Home/About</a></li>
+          <li class="tab"><a  href="#Details" onclick="getData('#Details')" id="Dessert-tab">Desserts</a></li>
+          <li class="tab"><a  href="#Details" onclick="showContact()">Contact</a></li>
+          <li class="tab"><a  href="#Details" onclick="showCart()">Cart</a></li>  
+        </ul>
+      </div>
+    </nav>
+
+
+    <div id="List-section">
+      <ul id="List"></ul>
+    </div>
+
+    <div id="Details">
+      <image id="Home-Img" src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2Rlc3NlcnRzLXVwZGF0ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==" alt='Desserts'> 
+        <p id="Home-p">WASD's Bakery has established itself as being the Caribbean's bakery of choice by passionately providing our customers daily 
+        with quality products, heartfelt service and an enjoyable experience at unbeatable value.</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
