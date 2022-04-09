@@ -25,6 +25,7 @@ nav{
   border: #FE446B 3px solid;
   border-radius: 3px;
   overflow-y: scroll;
+  display: block;
 }
 .Listings{
   background-color: #FE446B ;
@@ -39,7 +40,7 @@ nav{
   display: block;
 }
 #Home-Img{
-  width: 60%;
+  width: 30%;
   margin-top: 5px;
 }
 #Home-p{
@@ -48,6 +49,9 @@ nav{
 
 .icon{
   width: 25px;
+}
+.Info{
+  
 }
 #Contact>li{
   font-size: 20px;
@@ -58,6 +62,12 @@ button:hover {
 }
 
 @media screen and (max-width: 500px) {
+  body{
+    display: grid;
+    grid-template-rows: 1fr 8fr; 
+    grid-template-columns: 1fr;
+    height: 600px;
+  }
     #Dessert-tab{
         display: inline;
     }
@@ -65,7 +75,7 @@ button:hover {
         display: none;
     }
     #Details{
-        width: 300px;
-        height: 70%;
+        width: 100%;
+        height: 100%;
     }
 }

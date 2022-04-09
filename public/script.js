@@ -24,7 +24,6 @@ function countUp(i) {
 function countDown(i) {
   let quantity = document.getElementById(`quantity${i}`);
   quantity.value = --Cart[i].qty;
-
 }
 function removeDessert(j){
   for(let i = j; i < Cart.length -1; i++){
@@ -41,9 +40,8 @@ async function navigate(title, url){
   if(url === null){
     content.innerHTML = "";
   }else{
-    let response = await fetch(url);//fetch another page eg battery.html
+    let response = await fetch(url);
     content.innerHTML = await response.text();
-    executeScripts();
   }
 }
 
@@ -59,81 +57,53 @@ function showCart(){
     <td>${item.name}</td>
     <td>$${item.cost}</td>
     <td><input type="number" id="quantity${i}" value="Cart[${i}].qty" >
-    <button onclick="countUp(${i})">+</button>
-    <button onclick="countDown(${i})">-</button>
-    <button onclick="removeDessert(${i})">x</button></td>
-    </tr>`
+    <button onclick="countUp(${i})"><image src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" alt="Add" class="icon"></button>
+    <button onclick="countDown(${i})"><image src="https://cdn-icons-png.flaticon.com/512/43/43625.png" alt="Minus" class="icon"></button>
+    <button onclick="removeDessert(${i})"><image src="https://cdn-icons-png.flaticon.com/512/3096/3096673.png" alt="Delete" class="icon"></button></td>
+    </tr>`;
     i++;
   }
   html += `<tr><td></td> <td></td> 
-  <td><button onclick="Order()">Order items</button></td>
+  <td><button onclick="navigate('Order', 'Order.html')">Order items</button></td>
   </tr></tbody></table>`;
-  result.innerHTML = html;
-}
-
-function Order(){
-  let result = document.querySelector('#Details');
-
-  let html = `<div class="row">
-  <form id="myForm" class="col s12" >
-    <div class="row">
-      <div class="input-field col s12">
-        <input name="Username" type="text"  required>
-        <label for="Username">Name</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input name="Address" type="text"  required>
-        <label for="Address">Address</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input name="Number" type="tel" required>
-        <label for="Number">Phone Number</label>
-      </div>
-    </div>
-              
-    <div class="row">
-      <div class="col">
-        <input type="submit" class="btn waves-effect waves-light blue" value="Order" required/>
-      </div>
-    </div>
-   
-  </form>
-</div>`;
 
   result.innerHTML = html;
 }
 
-  /*function submit(event){
+
+  function submit(event){
   event.preventDefault();
     
   const myForm = event.target;
-  const formData = new FormData(form);//get form data
-  const data = Object.fromEntries(formData);//convert form data to object
-
-  postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+  
+ postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
   }
 
-  document.forms['myForm'].addEventListener('submit', submit);
+  
 
   async function postData(url, data){
-  let Products = '';
-  let Total = 0;
-  for(let item of Cart){
-    Products += `${item.qty} ${item.id}, `; 
-    Total += (item.qty * item.cost);
-  }
-  data.Products =Products;
-  data.Total = Total;
+    let Products = '';
+    let Total = 0;
+
+    for(let item of Cart){
+      Products += `${item.qty} ${item.id}, `;
+      Total = Total + (item.qty * item.cost);
+    }
+
   try{
       let response = await fetch(
         url, 
         {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify({
+              "Username": data.Username,
+              "Address": data.Address,
+              "Products": Products,
+              "Total": Total,
+              "Number": data.Number
+            }),
           headers: { 'Content-Type':'application/json', 'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY' }
         },
       );
@@ -143,9 +113,9 @@ function Order(){
     
     }catch(error){
       console.log(error);
+    }
   }
-  }
-  */
+
 //Prints the data, use the id Details where you want the details
 // eg. <div id="Details"> </div>
 function PrintDetails(item){
@@ -208,3 +178,4 @@ async function getData(Place){
   }
 }
 getData("#List");
+navigate('Home', 'Home.html');
