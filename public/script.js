@@ -53,7 +53,9 @@ function showCart(){
     </tr>`
     i++;
   }
-  html += '</tbody></table>';
+  html += `<tr><td></td> <td></td> 
+  <td><button onclick="Order()"></button></td>
+  </tr></tbody></table>`;
   result.innerHTML = html;
 }
 
@@ -71,7 +73,9 @@ function showContact(){
   let html = " Test 1";
   result.innerHTML = html;
 }
-
+function Order(){
+  
+}
 
 //Prints the data, use the id Details where you want the details
 // eg. <div id="Details"> </div>

@@ -1,1 +1,51 @@
+body{
+  display: grid;
+  background-color: #FFFFFF;
+  grid-template-rows: 1fr 8fr;
+  grid-template-columns: 2fr 8fr;  
+  height: 550px;
+}
+nav{
+  grid-column: span 2;
+}
+#Dessert-tab{
+  display: none;
+}
+#List-section{
+  color: black;
+  overflow-y: scroll;
+  height: 110%;
+}
+#Details{
+  height: 110%;
+  position: relative;
+  text-align: center;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.Listings{
+  background-color: gainsboro;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  color: black;
+}
+#Home-Img{
+  width: 60%;
+}
+#Home-p{
+  font-size: large;
+}
 
+@media screen and (max-width: 500px) {
+    #Dessert-tab{
+        display: inline;
+    }
+    #List-section{
+        display: none;
+        height: 70%;
+    }
+    #Details{
+        width: 300px;
+        height: 70%;
+    }
+}

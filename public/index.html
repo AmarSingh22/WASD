@@ -8,57 +8,6 @@
     <link href="style.css" rel="stylesheet" type="text/css" />        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <style>
-    body{
-      display: grid;
-      background-color: #FFFFFF;
-      grid-template-rows: 1fr 8fr;
-      grid-template-columns: 2fr 8fr;  
-      height: 550px;
-    }
-    nav{
-      grid-column: span 2;
-    }
-    #Dessert-tab{
-      display: none;
-    }
-    #List-section{
-      color: black;
-      overflow-y: scroll;
-      height: 500px;
-    }
-    #Details{
-      height: 550px;
-      position: relative;
-      text-align: center;
-      margin-left: 5px;
-      margin-top: 5px;
-    }
-    .Listings{
-      background-color: gainsboro;
-      border-radius: 4px;
-      margin-bottom: 3px;
-      color: black;
-    }
-    #Home-Img{
-      height: 300px;
-    }
-    #Home-p{
-      font-size: large;
-    }
-
-    @media screen and (max-width: 500px) {
-      #Dessert-tab{
-        display: inline;
-      }
-      #List-section{
-        display: none;
-      }
-      #Details{
-        width: 300px;
-      }
-    }
-    </style>
   </head>
   <body>
     
@@ -86,6 +35,6 @@
         <p id="Home-p">WASD's Bakery has established itself as being the Caribbean's bakery of choice by passionately providing our customers daily 
         with quality products, heartfelt service and an enjoyable experience at unbeatable value.</p>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js"> showHome();</script>
   </body>
 </html>
