@@ -21,10 +21,12 @@ function AddCart(id, name, cost){
 function countUp(i) {
   let quantity = document.getElementById(`quantity${i}`);
   quantity.value = ++Cart[i].qty;
+  total();
 }
 function countDown(i) {
   let quantity = document.getElementById(`quantity${i}`);
   quantity.value = --Cart[i].qty;
+  total();
 }
 function removeDessert(j){
   for(let i = j; i < Cart.length -1; i++){
@@ -34,6 +36,20 @@ function removeDessert(j){
 
   toast("Dessert deleted from Cart");
   showCart();
+  total();
+}
+
+function total(){
+  let Total = 0;
+  let result = document.querySelector('#subtotal');
+
+  for(let item of Cart){
+    Total = Total + (item.qty * item.cost);
+  }
+
+  let html = `$${Total}`;
+  
+  result.innerHTML = html;
 }
 
 async function navigate(title, url){
@@ -65,9 +81,10 @@ function showCart(){
     </tr>`;
     i++;
   }
-  html += `<tr><td></td> <td></td> 
+  html += `<tr><td>Subtotal:</td> <td id="subtotal"></td> 
   <td><button onclick="navigate('Order', 'Order.html')">Order items</button></td>
   </tr></tbody></table>`;
+  total();
 
   result.innerHTML = html;
 }
@@ -106,7 +123,10 @@ function showCart(){
               "Total": Total,
               "Number": data.Number
             }),
-          headers: { 'Content-Type':'application/json', 'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY', 'accept': 'application/json' }
+          headers: { 
+            'Content-Type':'application/json', 
+            'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY',
+           'accept': 'application/json' }
         },
       );
       
@@ -182,5 +202,8 @@ async function getData(Place){
 function toast(message){
     M.toast({html: message});
 }
+
 getData("#List");
 navigate('Home', 'Home.html');
+
+
