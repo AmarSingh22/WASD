@@ -13,6 +13,7 @@ function AddCart(id, name, cost){
     "qty": 1
   };
 
+  toast("Added to Cart");
   Cart.push(purchase);
 }
 
@@ -31,6 +32,7 @@ function removeDessert(j){
   }
   Cart.pop();
 
+  toast("Dessert deleted from Cart");
   showCart();
 }
 
@@ -104,7 +106,7 @@ function showCart(){
               "Total": Total,
               "Number": data.Number
             }),
-          headers: { 'Content-Type':'application/json', 'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY' }
+          headers: { 'Content-Type':'application/json', 'xc-auth': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJkc2luZ2gyMEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ4NDI0NTMyfQ.s0d2BGWl5J0PRCUy5Q6n7SYG5La0wIudSlfFtFSkfLY', 'accept': 'application/json' }
         },
       );
       
@@ -176,6 +178,9 @@ async function getData(Place){
   }catch(e){
       console.log(e);
   }
+}
+function toast(message){
+    M.toast({html: message});
 }
 getData("#List");
 navigate('Home', 'Home.html');

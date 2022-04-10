@@ -26,6 +26,7 @@ nav{
   border-radius: 3px;
   overflow-y: scroll;
   display: block;
+  padding: 5px;
 }
 .Listings{
   background-color: #FE446B ;
@@ -51,7 +52,11 @@ nav{
   width: 25px;
 }
 .Info{
-  
+  background-color: #C70039;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 4px;
+  margin-bottom: 20px;
 }
 #Contact>li{
   font-size: 20px;
