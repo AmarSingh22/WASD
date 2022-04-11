@@ -63,6 +63,7 @@ async function navigate(title, url){
   }
 }
 
+
 //function to use with a button to show cart, use the Id cart where you want the Cart to display
 function showCart(){
   let result = document.querySelector('#Details');
@@ -98,11 +99,10 @@ function showCart(){
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
   
-  toast("Order has been submitted");
- postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
+  postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
   }
 
-  
+ 
 
   async function postData(url, data){
     let Products = '';
