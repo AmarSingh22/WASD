@@ -84,9 +84,10 @@ function showCart(){
   html += `<tr><td>Subtotal:</td> <td id="subtotal"></td> 
   <td><button onclick="navigate('Order', 'Order.html')">Order items</button></td>
   </tr></tbody></table>`;
-  total();
+  
 
   result.innerHTML = html;
+  total();
 }
 
 
@@ -97,6 +98,7 @@ function showCart(){
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
   
+  toast("Order has been submitted");
  postData('https://wasd-bakery.herokuapp.com/nc/wasd_bakery_h7p8/api/v1/Purchase', data);
   }
 
