@@ -25,7 +25,7 @@ function countUp(i) {
 }
 function countDown(i) {
   let quantity = document.getElementById(`quantity${i}`);
-  quantity.value = --Cart[i].qty;
+  if(Cart[i].qty > 0) quantity.value = --Cart[i].qty;
   total();
 }
 function removeDessert(j){
